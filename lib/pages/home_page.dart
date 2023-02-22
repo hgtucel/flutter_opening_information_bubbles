@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,9 +11,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int? number;
 
+  final menuIconKey = GlobalKey();
+  final increaseIconKey = GlobalKey();
+  final decreaseIconKey = GlobalKey();
+  final settingsIconKey = GlobalKey();
+
   @override
   void initState() {
     number = 0;
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ShowCaseWidget.of(context).startShowCase(
+        [menuIconKey, increaseIconKey, decreaseIconKey, settingsIconKey],
+      ),
+    );
     super.initState();
   }
 
@@ -21,10 +32,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF231f20),
+        leading: Builder( //Required for Builder openDrawer().
+          builder: (context) {
+            return IconButton(
+              icon: Showcase(
+                key: menuIconKey,
+                description: "You can find the categories here.",
+                child: const Icon(Icons.menu_rounded)),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            );
+          }
+        ),
       ),
       drawer: Drawer(
         child: ListView(
           children: const [
+            ListTile(
+              title: Text("Menu 1"),
+            ),
             ListTile(
               title: Text("Menu 1"),
             )
@@ -34,7 +59,10 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF231f20),
         onPressed: () {},
-        child: const Icon(Icons.settings),
+        child: Showcase(
+            key: settingsIconKey,
+            description: "You can go to the settings page here.",
+            child: const Icon(Icons.settings)),
       ),
       body: Center(
         child: Column(
@@ -50,7 +78,10 @@ class _HomePageState extends State<HomePage> {
                             number = (number ?? 0) + 1;
                           });
                         },
-                        icon: const Icon(Icons.add))),
+                        icon: Showcase(
+                            key: increaseIconKey,
+                            description: "You can increase the number here.",
+                            child: const Icon(Icons.add)))),
                 Expanded(
                   flex: 2,
                   child: Container(
@@ -80,7 +111,10 @@ class _HomePageState extends State<HomePage> {
                             });
                           }
                         },
-                        icon: const Icon(Icons.remove))),
+                        icon: Showcase(
+                            key: decreaseIconKey,
+                            description: "You can decrease the number here.",
+                            child: const Icon(Icons.remove)))),
               ],
             ),
           ],
