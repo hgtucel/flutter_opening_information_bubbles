@@ -1,16 +1,15 @@
 # flutter_opening_information_bubbles
 
-A new Flutter project.
+<img src="https://storage.googleapis.com/cms-storage-bucket/847ae81f5430402216fd.svg" width="128" />
 
-## Getting Started
+A project that creates informational/promotional bubbles at the opening using the Flutter Showcase package.
 
-This project is a starting point for a Flutter application.
+## Packages
 
-A few resources to get you started if this is your first Flutter project:
+dependencies: <a href="https://pub.dev/packages/showcaseview" target="_blank">showcaseview</a> <br />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Screen Recording
+
+<img src='https://github.com/hgtucel/flutter_opening_information_bubbles/blob/main/showcase_ss.gif' width='250'>
+
